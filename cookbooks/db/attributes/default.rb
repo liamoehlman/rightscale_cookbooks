@@ -38,6 +38,9 @@ set_unless[:db][:init_status] = :uninitialized
 # Default value for DB master/slave check
 set_unless[:db][:this_is_master] = false
 
+# Default value for DB read_only.  Used to set state in configuration files.
+set_unless[:db][:read_only] = false
+
 # Instance UUID and ip default values
 set_unless[:db][:current_master_uuid] = nil
 set_unless[:db][:current_master_ip] = nil

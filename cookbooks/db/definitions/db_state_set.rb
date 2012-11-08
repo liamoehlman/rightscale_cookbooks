@@ -28,6 +28,10 @@ define :db_state_set, :master_uuid => nil, :master_ip => nil, :is_master => fals
       node[:db][:current_master_uuid] = master_uuid
       node[:db][:current_master_ip] = master_ip
       node[:db][:this_is_master] = is_master
+      # During some operations mastercan be in a read only state.  However,
+      # when the state is set we know that the master is read/write, so
+      # can safely set it here based on being master or not.
+      node[:db][:read_only] = not is_master
     end
     action :nothing if immediate
   end

@@ -55,3 +55,7 @@ end
 set_unless[:db_mysql][:file_ulimit] = `sysctl -n fs.file-max`.to_i/33
 
 set_unless[:db_mysql][:backup][:slave][:max_allowed_lag] = 60
+
+# Set instance to allow read/write (master)
+# This gets updated during master/slave init, promotoin, etc.. 
+set_unless[:db][:read_only] = 0
