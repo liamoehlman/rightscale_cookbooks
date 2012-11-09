@@ -532,7 +532,7 @@ action :promote do
   end
 
   # Set read/write in my.cnf
-  node[:db][:read_only] = 0
+  node[:db][:read_only] = false
   # Enable binary logging in my.cnf
   node[:db_mysql][:log_bin_enabled] = true
 
@@ -732,7 +732,7 @@ action :enable_replication do
     end
   end
 
-  node[:db][:read_only] = 1
+  node[:db][:read_only] = true
 
 end
 

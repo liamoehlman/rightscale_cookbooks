@@ -7,7 +7,8 @@
 
 define :db_mysql_set_mycnf, :server_id => nil, :relay_log => nil, :innodb_log_file_size => nil do
 
-  log "  Installing my.cnf with server_id = #{params[:server_id]}, relay_log = #{params[:relay_log]}"
+  read_only = node[:db][:read_only]
+  log "  Installing my.cnf with server_id = #{params[:server_id]}, relay_log = #{params[:relay_log]} read_only = #{read_only}"
 
   template value_for_platform("default" => "/etc/mysql/conf.d/my.cnf") do
     source "my.cnf.erb"
@@ -17,7 +18,8 @@ define :db_mysql_set_mycnf, :server_id => nil, :relay_log => nil, :innodb_log_fi
     variables(
       :server_id => params[:server_id],
       :relay_log => params[:relay_log],
-      :innodb_log_file_size => params[:innodb_log_file_size] || node[:db_mysql][:tunable][:innodb_log_file_size]
+      :innodb_log_file_size => params[:innodb_log_file_size] || node[:db_mysql][:tunable][:innodb_log_file_size],
+      :read_only => read_only
     )
     cookbook "db_mysql"
   end
