@@ -11,11 +11,11 @@ log "  Provider is #{node[:app][:provider]}"
 log "  Application IP is #{node[:app][:ip]}"
 log "  Application port is #{node[:app][:port]}"
 
-
-directory "#{node[:app][:destination]}" do
-  recursive true
+if node[:app][:destination] do
+  directory "#{node[:app][:destination]}" do
+    recursive true
+  end
 end
-
 
 log "  Installing #{node[:app][:packages]}" if node[:app][:packages]
 
