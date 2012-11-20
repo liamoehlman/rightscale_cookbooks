@@ -11,6 +11,8 @@ log "  Provider is #{node[:app][:provider]}"
 log "  Application IP is #{node[:app][:ip]}"
 log "  Application port is #{node[:app][:port]}"
 
+log " Destination is #{node[:app][:destination]}"
+
 if node[:app][:destination]?
   directory "#{node[:app][:destination]}" do
     recursive true
