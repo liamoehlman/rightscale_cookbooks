@@ -14,9 +14,9 @@ log "  Application port is #{node[:app][:port]}"
 log " Destination is #{node[:app][:destination]}"
 
 if node[:app][:destination]?
-  directory "#{node[:app][:destination]}" do
-    recursive true
-  end
+#  directory "#{node[:app][:destination]}" do
+#    recursive true
+#  end
 end
 
 log "  Installing #{node[:app][:packages]}" if node[:app][:packages]
